@@ -51,9 +51,14 @@ const DateInput: React.FC = () => {
 
 
     return (
-        <form onSubmit={handleSubmit} className="date-input-container">
+        <div className="form-container">
+            <form onSubmit={handleSubmit} className="date-input-container">
+                <h2 className="form-title">Sélectionnez les Dates de l'Événement</h2>
+                <p className="form-description">Veuillez choisir la plage de dates pour laquelle vous souhaitez voir les
+                événements.</p>
+
             <label className="date-label">
-                Start Date:
+                Date de Début:
                 <input
                     type="date"
                     className="date-input"
@@ -63,7 +68,7 @@ const DateInput: React.FC = () => {
             </label>
 
             <label className="date-label">
-                End Date:
+                Date de Fin:
                 <input
                     type="date"
                     className="date-input"
@@ -74,8 +79,11 @@ const DateInput: React.FC = () => {
                     max={startDate ? new Date(new Date(startDate).getTime() + (3 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0] : ''}
                 />
             </label>
-            <button type="submit" className="submit-button">Submit</button>
+
+            <button type="submit" className="submit-button">Soumettre</button>
         </form>
+        </div>
+
     );
 };
 
