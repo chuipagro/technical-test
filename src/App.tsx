@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.css';
-import {Route, Routes} from "react-router-dom";
-import DateInput from "../pages/DateInput";
-import EventsTable from "../pages/EventsTable";
+import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
+import DateInput from "./pages/DateInput";
+import EventsTable from "./pages/EventsTable";
 
 function App() {
     return (
-        <Routes>
-            <Route path="/" element={<DateInput />} />
-            <Route path="/about" element={<EventsTable />} />
-        </Routes>
+        <Router>
+            <Routes>
+                <Route path="/" element={<DateInput/>} />
+                <Route path="/events" element={<EventsTable />} />
+            </Routes>
+        </Router>
     );
 }
 
