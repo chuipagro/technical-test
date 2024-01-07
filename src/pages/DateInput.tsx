@@ -10,7 +10,7 @@ const DateInput: React.FC = () => {
 
     useEffect(() => {
         setIsEndDateDisabled(!startDate);
-        if (!startDate) setEndDate(null); // Reset end date if start date is cleared
+        if (!startDate) setEndDate(null);
     }, [startDate]);
 
     const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {

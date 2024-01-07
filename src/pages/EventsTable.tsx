@@ -25,7 +25,7 @@ const EventsTable: React.FC = () => {
 
         if (storedStartDate && storedEndDate) {
             try {
-                const response = await axios.get('https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?limit=70');
+                const response = await axios.get('https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?limit=100');
 
                 const filteredEvents = response.data.results.filter((event: any) => {
                     const eventStartDate = new Date(event.date_start);
@@ -35,6 +35,15 @@ const EventsTable: React.FC = () => {
 
                     return eventStartDate >= selectedStartDate && eventEndDate <= selectedEndDate;
                 });
+
+                /*const startDate = storedStartDate
+                const endDate = storedEndDate
+                const url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?where=date_start>=date'${startDate}' AND date_end <= date'${endDate}'&limit=100`;
+                const response = await axios.get(url);
+
+                this is the code that works way better but i managed to do it a little to late
+                 */
+
 
                 setEvents(filteredEvents);
             } catch (error) {
@@ -61,10 +70,19 @@ const EventsTable: React.FC = () => {
         return '';
     }
 
+    if (!events.length) {
+        return <div>
+            <button onClick={() => navigate('/')}>Retour</button>
+
+            <h2 style={{alignSelf: "center"}}>Aucun event n'a été trouvé entre les dates que vous avez définis.</h2>
+            <h2> Appuyez sur le bouton retour pour rentrer d'autres dates</h2>
+        </div>;
+    }
+
 
     return (
         <div>
-        <button onClick={() => navigate('/')}>Retour</button>
+            <button onClick={() => navigate('/')}>Retour</button>
         <table className="events-table">
             <thead>
             <tr>
